@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from '../../assets/logo.png'
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProviders";
 const Header = () => {
+  const {user,logOut} = useContext(AuthContext)
+  const handleLogOut = () => {
+    logOut()
+  }
   return (
     <nav className="bg-gray-800 p-4 flex items-center justify-between">
     <div className="flex items-center space-x-4">
@@ -18,7 +23,7 @@ const Header = () => {
       </div>
     </div>
     <div className="flex items-center space-x-2">
-      <div className="text-white">Username</div>
+      <div className="text-white">{user?.email}</div>
       <button className="text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +52,7 @@ const Header = () => {
           />
         </svg>
       </button>
-      <button className="text-white">Logout</button>
+      <button onClick={handleLogOut} className="text-white">Logout</button>
     </div>
   </nav>
   );

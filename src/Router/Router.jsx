@@ -5,6 +5,9 @@ import CategoryCard from './../Pages/CategoryCard/CategoryCard';
 import Products from '../Pages/Products/Products';
 import Cart from '../Pages/Cart/Cart';
 import SingleCategory from './SingleCategory/SingleCategory';
+import Register from '../Authntication/Register/Register';
+import Login from '../Authntication/Login/Login';
+import LoginLayout from './LoginLayout/LoginLayout';
 
 const router = createBrowserRouter([
     {
@@ -23,7 +26,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <SingleCategory></SingleCategory>,
-                loader: ({params}) => fetch(`http://localhost:3000/categories/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:3000/products/${params.id}`)
             },
             {
                 path: '/products',
@@ -39,9 +42,24 @@ const router = createBrowserRouter([
                 path: '/cart/:id',
                 element: <Cart></Cart>,
                 loader: ({params}) => fetch(`http://localhost:3000/products/${params.id}`)
-            }
+            },
+
         ],
         
+    },
+    {
+        path: '/',
+        element: <LoginLayout></LoginLayout>,
+        children: [
+            {
+                path: '/register',
+                element: <Register></Register>,
+            },
+            {
+                path: '/login',
+                element: <Login></Login>,
+            },
+        ],
     }
 ])
 export default router;

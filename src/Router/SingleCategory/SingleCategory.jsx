@@ -6,7 +6,7 @@ const SingleCategory = () => {
     console.log(products)
     return (
         <div>
-            
+            <h1>Lenght : {products.length}</h1>
         </div>
     );
 };

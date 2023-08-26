@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 import {  FaRegEye,FaStar, FaRegStar  } from 'react-icons/fa';
+import { AuthContext } from "../../Providers/AuthProviders";
 const ProductCard = ({ product }) => {
   const { _id, title, image_url,price, description, rating } = product;
-  console.log(product);
+  const {user} = useContext(AuthContext)
   return (
 
     <div className="card w-96 glass">

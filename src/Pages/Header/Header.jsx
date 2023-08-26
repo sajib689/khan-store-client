@@ -19,10 +19,11 @@ const Header = () => {
         <Link className="text-white hover:text-gray-300">Home</Link>
         <Link to='/products' className="text-white hover:text-gray-300">Products</Link>
         <Link to='/category' className="text-white hover:text-gray-300">Category</Link>
-        <Link to='/login' className="text-white hover:text-gray-300">Login</Link>
+        
       </div>
     </div>
     <div className="flex items-center space-x-2">
+
       <div className="text-white">{user?.email}</div>
       <button className="text-white">
         <svg
@@ -52,8 +53,15 @@ const Header = () => {
           />
         </svg>
       </button>
-      <button onClick={handleLogOut} className="text-white">Logout</button>
-    </div>
+      {
+        user ? 
+        <button onClick={handleLogOut} className="text-white">Logout</button>
+    
+        :
+        <Link to='/login' className="text-white hover:text-gray-300">Login</Link>
+     
+      }
+   </div>
   </nav>
   );
 };

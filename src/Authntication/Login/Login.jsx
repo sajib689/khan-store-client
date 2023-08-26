@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
     const [success, setSuccess] = useState('')
-
+    const [error, setError] = useState('')
     const {login} = useContext(AuthContext)
     const navigate = useNavigate()
     const handleLogin = e => {
@@ -22,13 +22,14 @@ const Login = () => {
             console.log(user)
         })
         .catch(error => {
-            console.error(error)
+          setError(() => toast("Your email or password wrong!"))
         })
 
     }
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <p>{success}</p>
+      <p>{error}</p>
       <ToastContainer></ToastContainer>
       <div className="w-full max-w-md p-6 bg-white rounded shadow-md">
         <h2 className="text-center text-3xl mb-4">Please Login! </h2>
@@ -38,6 +39,7 @@ const Login = () => {
             Email
           </label>
           <input
+          required
             name="email"
             type="email"
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
@@ -48,6 +50,7 @@ const Login = () => {
             Password
           </label>
           <input
+          required
             name="password"
             type="password"
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
